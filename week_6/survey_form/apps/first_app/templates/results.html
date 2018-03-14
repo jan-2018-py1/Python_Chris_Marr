@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <title>Survey Results</title>
+    </head>
+    <body>
+    <div class="container">
+        <p>You've submitted this form {{ request.session.tries }} times.</p>
+        <h4>Submitted Information</h4>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Name:</td>
+                    <td>{{ request.session.name }}</td>
+                </tr>
+                <tr>
+                    <td>Location:</td>
+                    <td>{{ request.session.location }}</td>
+                </tr>
+                <tr>
+                    <td>Language:</td>
+                    <td>{{ request.session.language }}</td>
+                </tr>
+                <tr>
+                    <td>Comment:</td>
+                    <td>{{ request.session.comment }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/"><button>Go Back</button></a>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <title>  :add_title:  </title>
+    </head>
+    <body>
+    <div class="container">
+        <header>
+            <h2>Welcome {{ user.name }}</h2>
+            <p><a href="{% url 'second_app:add' %}">Add book and quote</a> | <a href="{% url 'first_app:logout' %}">Logout</a></p>
+           
+        </header>
+        <div class="main">
+            <h2>Recent Book Quotes:</h2>
+            {% for quote in recent %}
+            <div class="quote">
+                <h2><a href="/books/{{quote.book.id}}">{{ quote.book.title }}</a></h2>
+                <p>Rating: {{ quote.rating }}</p>
+                <p><a href="/user/{{quote.quoter.id}}">{{ quote.quoter.name}}</a> says: {{ quote.quote }}</p>
+                <p>Posted on: {{ quote.created_at }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="side">
+            <h2>Other Books with Quotes:</h2>
+            {% for quote in more %}
+            <div class="quote">
+                <h2><a href="/books/{{quote.book.id}}">{{ quote.book.title }}</a></h2>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+    </div>
+    </body>
+</html>

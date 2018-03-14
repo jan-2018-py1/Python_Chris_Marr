@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <title>Session Words</title>
+    </head>
+    <body>
+    <div class="container" style="display: inline-block">
+          <h1>Add a new word</h1>
+          <form action="/first_app/process" method="POST">
+          {% csrf_token %}
+            <p><label for="word"></label><textarea name="word" rows="1" cols="30"></textarea></p>
+            <p>Choose color</p>
+            <div>
+                <input type="radio" id="color1" name="color" value="red">
+                <label for="color1">Red</label>
+                <input type="radio" id="color2" name="color" value="blue">
+                <label for="color2">Blue</label>
+                <input type="radio" id="color3" name="color" value="green">
+                <label for="color3">Green</label>
+            </div>
+            <!--<div>
+                <input type="checkbox" id="big_font" name="big_font" value="big_font">
+                <label for="big_font">Show in BIG fonts!</label>
+            </div>-->
+            <input type="submit" value="Add to session">
+          </form>
+    </div>
+    <div style="display: inline-block">
+      <p>{{ request.session.word }}</p>
+    </div>
+    </body>
+</html>

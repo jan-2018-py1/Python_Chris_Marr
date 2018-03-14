@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <title>  :add_title:  </title>
+    </head>
+    <body>
+    <div class="container">
+        <p><a href="/books">Home</a> | <a href="/logout">Logout</a></p>
+        <h1>{{book.title}}</h1>
+        <h2>{{book.author}}</h2>
+        <div class="quotes">
+            <h3>Quotes:</h3>
+            <hr>
+            {% for quote in book.quotes.all %}
+                <p>Rating: {{quote.rating}}</p>
+                <p><a href="/user/{{quote.quoter.id}}">{{quote.quoter.name}}</a> says: {{quote.quote}}</p>
+            <p>Posted on: {{quote.created_at}}</p>
+            <hr>
+            {% endfor %}
+        </div>
+        <form action="/books/{{book.id}}/create" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="quote">Quote:</label>
+                <textarea rows="5" cols="40" type="text" name="quote"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <select name="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <input type="submit" value="Submit Quote">
+        </form>
+    </div>
+    </body>
+</html>
