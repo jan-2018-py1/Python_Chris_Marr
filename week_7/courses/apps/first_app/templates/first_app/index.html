@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <title>Courses</title>
+    </head>
+    <body>
+    <div class="container">
+        <h3>Add a new course</h3>
+        <form action="/courses/create" method="POST">
+        {% csrf_token %}
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" name="name">
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <input type="text" name="description">
+            </div>
+            <input type="submit" value="Create">
+        </form>
+    </div>
+    <br>
+    <br>
+    <div>
+        <h3>Courses</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Description</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.description }}</td>
+                    <td>{{ course.date }}</td>
+                    <td><a href="/courses/confirm/{{ course.id }}"><button type="">Remove</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </body>
+</html>
